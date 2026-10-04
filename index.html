@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>Café Atma | Menú, café tostado y eventos</title>
+  <meta name="description"
+        content="Conoce el menú de Café Atma: espresso, latte, cold brew, matcha, affogato y alimentos para acompañar. Café en grano y molido, tostado y servicio para eventos.">
+
+  <!-- Retirar noindex cuando el dominio y los datos finales estén confirmados. -->
+  <meta name="robots" content="noindex,follow">
+  <meta name="theme-color" content="#FFCF01">
+
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_MX">
+  <meta property="og:title" content="Café Atma | Un sorbo para el alma">
+  <meta property="og:description"
+        content="Cafetería, tostado de café y eventos. Consulta nuestro menú y encuentra tu próximo café.">
+
+  <!-- Al tener dominio definitivo, agregar canonical, og:url y og:image. -->
+  <link rel="icon" href="logo-atma.png" type="image/png">
+
+  <style>
+    :root {
+      --yellow: #FFCF01;
+      --brown: #2C1B14;
+      --cream: #FFF7E8;
+      --paper: #F4EADB;
+      --muted: #716056;
+      --line: #D9CBB7;
+      --white: #FFFFFF;
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 135px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--brown);
+      background: var(--cream);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.65;
+    }
+
+    button, input, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; }
+    img { display: block; max-width: 100%; }
+    h1, h2, h3, h4, p, figure { margin: 0; }
+    button { cursor: pointer; }
+
+    a:focus-visible,
+    button:focus-visible,
+    summary:focus-visible,
+    [tabindex]:focus-visible {
+      outline: 3px solid #AE6400;
+      outline-offset: 5px;
+    }
+
+    [hidden] { display: none !important; }
+
+    .wrap {
+      width: min(1180px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .section { padding-block: 80px; }
+
+    .eyebrow {
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      font-family: Georgia, serif;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -.04em;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading .section-title { margin-top: 12px; }
+
+    .section-heading > p {
+      color: var(--muted);
+      max-width: 320px;
+    }
+
+    .icon {
+      width: 21px;
+      height: 21px;
+      flex-shrink: 0;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 48px;
+      padding: 13px 21px;
+      background: var(--yellow);
+      border: 1px solid var(--yellow);
+      color: var(--brown);
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: .94rem;
+      text-decoration: none;
+      transition: transform .2s, background .2s;
+    }
+
+    .button:hover { transform: translateY(-2px); }
+
+    .button.dark {
+      background: var(--brown);
+      border-color: var(--brown);
+      color: var(--cream);
+    }
+
+    .button.outline {
+      border-color: var(--brown);
+      background: transparent;
+    }
+
+    .text-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      text-decoration: none;
+      border-bottom: 1px solid currentColor;
+      padding-block: 6px;
+    }
+
+    .skip {
+      position: fixed;
+      top: -100px;
+      left: 20px;
+      padding: 12px 18px;
+      background: var(--brown);
+      color: white;
+      z-index: 100;
+    }
+
+    .skip:focus { top: 12px; }
+
+    /* Navegación */
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: var(--cream);
+      border-bottom: 1px solid var(--line);
+      box-shadow: 0 5px 20px #2c1b1408;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      min-height: 94px;
+    }
+
+    .brand {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--brown);
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 63px;
+      height: 63px;
+      border-radius: 50%;
+    }
+
+    .brand span {
+      font-size: 1.1rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      white-space: nowrap;
+    }
+
+    .main-nav {
+      display: flex;
+      flex: 1;
+      gap: 25px;
+      min-width: 0;
+      overflow-x: auto;
+      white-space: nowrap;
+      scrollbar-width: thin;
+      scrollbar-color: #B7A58E transparent;
+      overscroll-behavior-x: contain;
+    }
+
+    .main-nav a {
+      flex-shrink: 0;
+      padding-block: 13px;
+      font-size: .9rem;
+      text-decoration: none;
+    }
+
+    .main-nav a:hover,
+    .main-nav a[aria-current="location"] {
+      text-decoration: underline;
+      text-decoration-color: #B18A00;
+      text-underline-offset: 7px;
+    }
+
+    .header-contact {
+      flex-shrink: 0;
+      font-size: .85rem;
+      min-height: 43px;
+    }
+
+    /* Portada */
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      align-items: center;
+      gap: 65px;
+      padding-block: 70px;
+    }
+
+    .hero h1 {
+      margin-top: 24px;
+      font-family: Georgia, serif;
+      font-size: clamp(3.7rem, 7vw, 6.7rem);
+      font-weight: 400;
+      letter-spacing: -.055em;
+      line-height: 1;
+    }
+
+    .hero h1 em {
+      font-weight: 400;
+      text-decoration: underline;
+      text-decoration-color: var(--yellow);
+      text-decoration-thickness: 9px;
+      text-underline-offset: 8px;
+    }
+
+    .hero-description {
+      margin-top: 27px;
+      max-width: 520px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-top: 30px;
+    }
+
+    .hero-logo {
+      padding: 35px;
+      background: var(--yellow);
+      border-radius: 50% 50% 12px 12px;
+    }
+
+    .hero-logo img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: contain;
+      border-radius: 50%;
+    }
+
+    .hero-logo figcaption {
+      margin-top: 17px;
+      text-align: center;
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .16em;
+    }
+
+    .brand-band {
+      background: var(--brown);
+      color: var(--yellow);
+      padding: 20px 24px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 22px 55px;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: .13em;
+    }
+
+    /* Libro del menú */
+
+    .book-tabs {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 13px;
+      margin-bottom: 13px;
+      scrollbar-width: thin;
+    }
+
+    .book-tabs button {
+      flex-shrink: 0;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      padding: 11px 18px;
+      color: var(--brown);
+      background: transparent;
+      font-size: .88rem;
+    }
+
+    .book-tabs button[aria-pressed="true"] {
+      background: var(--brown);
+      border-color: var(--brown);
+      color: var(--yellow);
+    }
+
+    .menu-book {
+      display: grid;
+      grid-template-columns: .7fr 1.3fr;
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--brown);
+      box-shadow:
+        0 22px 40px -22px #2c1b1466,
+        4px 5px 0 #C6B59B,
+        8px 9px 0 #E4D7C1;
+    }
+
+    .book-cover {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 28px;
+      color: var(--brown);
+      background: var(--yellow);
+      box-shadow: inset -17px 0 24px -22px #000;
+      text-align: center;
+    }
+
+    .book-cover img {
+      width: min(240px, 85%);
+      border-radius: 50%;
+      margin-block: 25px 30px;
+    }
+
+    .book-cover h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 400;
+      line-height: 1;
+    }
+
+    .book-cover p {
+      margin-top: 22px;
+      font-size: .85rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+
+    .book-cover small {
+      margin-top: auto;
+      padding-top: 45px;
+      font-size: .75rem;
+    }
+
+    .book-content {
+      min-width: 0;
+      padding: 35px 36px 23px;
+      color: var(--cream);
+      box-shadow: inset 18px 0 22px -24px #000;
+    }
+
+    .book-topline {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      border-bottom: 1px solid #ffffff30;
+      padding-bottom: 16px;
+      margin-bottom: 26px;
+      font-size: .74rem;
+      letter-spacing: .12em;
+    }
+
+    .menu-page {
+      touch-action: pan-y;
+      scroll-margin-top: 145px;
+    }
+
+    .menu-page h3 {
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--brown);
+      padding: 8px 15px;
+      margin-bottom: 20px;
+      font-size: clamp(1.1rem, 2vw, 1.5rem);
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .size-header {
+      display: grid;
+      grid-template-columns: 1fr 62px 62px;
+      gap: 12px;
+      font-size: .8rem;
+      letter-spacing: .08em;
+      margin-bottom: 5px;
+      color: #E1D3C4;
+    }
+
+    .size-header span:not(:first-child) { text-align: right; }
+
+    .menu-item {
+      padding: 15px 0;
+      border-bottom: 1px dashed #ffffff38;
+    }
+
+    .item-line {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 62px 62px;
+      gap: 12px;
+      align-items: baseline;
+    }
+
+    .item-line.single {
+      grid-template-columns: minmax(0, 1fr) auto;
+    }
+
+    .menu-item h4 {
+      color: var(--yellow);
+      font-size: 1.05rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      line-height: 1.35;
+    }
+
+    .price {
+      color: var(--yellow);
+      text-align: right;
+      font-size: 1.08rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .menu-item p {
+      margin-top: 7px;
+      font-size: .88rem;
+      line-height: 1.55;
+      color: #EDDFD2;
+    }
+
+    .menu-notes {
+      margin-top: 22px;
+      color: var(--yellow);
+      font-size: .8rem;
+      font-weight: 700;
+    }
+
+    .menu-extra {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      border-top: 1px solid #ffffff38;
+      margin-top: 24px;
+      padding-top: 16px;
+      color: var(--yellow);
+      font-weight: 700;
+      font-size: .85rem;
+    }
+
+    .book-controls {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      border-top: 1px solid #ffffff30;
+      margin-top: 30px;
+      padding-top: 18px;
+    }
+
+    .book-controls button {
+      width: 46px;
+      height: 44px;
+      color: var(--yellow);
+      border: 1px solid #ffffff50;
+      border-radius: 5px;
+      background: transparent;
+      font-size: 1.25rem;
+    }
+
+    .book-controls button:hover:not(:disabled) {
+      background: var(--yellow);
+      color: var(--brown);
+    }
+
+    .book-controls button:disabled {
+      opacity: .3;
+      cursor: default;
+    }
+
+    .book-controls span {
+      font-size: .8rem;
+      letter-spacing: .12em;
+    }
+
+    .menu-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 25px;
+      flex-wrap: wrap;
+      margin-top: 33px;
+    }
+
+    .menu-bottom p {
+      color: var(--muted);
+      font-size: .84rem;
+    }
+
+    /* Servicios */
+
+    .services {
+      color: var(--cream);
+      background: var(--brown);
+    }
+
+    .services .section-heading > p { color: #D4C3B2; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .service-card {
+      border: 1px solid #ffffff35;
+      border-radius: var(--radius);
+      padding: 36px;
+    }
+
+    .service-card .eyebrow { color: var(--yellow); }
+
+    .service-card h3 {
+      font-family: Georgia, serif;
+      font-size: 2.4rem;
+      font-weight: 400;
+      line-height: 1.15;
+      margin-block: 20px;
+    }
+
+    .service-card p {
+      color: #E4D6C8;
+      margin-bottom: 25px;
+    }
+
+    /* Galería */
+
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 20px;
+    }
+
+    .photo-grid figure { grid-column: span 2; }
+    .photo-grid figure:nth-child(-n+2) { grid-column: span 3; }
+
+    .photo-grid img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    .photo-grid figcaption {
+      font-size: .85rem;
+      color: var(--muted);
+      margin-top: 10px;
+    }
+
+    /* Visita y contacto */
+
+    .visit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.15fr;
+      gap: 50px;
+    }
+
+    .visit-detail {
+      padding-block: 23px;
+      border-top: 1px solid var(--line);
+    }
+
+    .visit-detail h3 {
+      font-size: 1.2rem;
+      margin-bottom: 12px;
+    }
+
+    .visit-detail p { color: var(--muted); }
+
+    .hours {
+      border-collapse: collapse;
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .hours th, .hours td {
+      border-bottom: 1px solid var(--line);
+      padding: 10px 0;
+      font-size: .9rem;
+      text-align: left;
+    }
+
+    .hours th { font-weight: 400; }
+    .hours td { text-align: right; }
+
+    .map-box {
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      overflow: hidden;
+      min-height: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .map-box iframe {
+      width: 100%;
+      min-height: 340px;
+      border: 0;
+      flex: 1;
+    }
+
+    .map-box > a {
+      padding: 18px 22px;
+      background: var(--yellow);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .contact {
+      background: var(--yellow);
+      padding-block: 60px;
+    }
+
+    .contact-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 35px;
+    }
+
+    .contact-links {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 25px;
+      padding-block: 30px 95px;
+      font-size: .85rem;
+    }
+
+    .floating-whatsapp {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 50;
+      background: #245A38;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px 18px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      box-shadow: 0 6px 25px #0002;
+    }
+
+    @media (max-width: 950px) {
+      .brand span { display: none; }
+      .header-inner { gap: 20px; }
+      .hero { gap: 35px; }
+      .book-content { padding-inline: 25px; }
+      .book-cover { padding-inline: 20px; }
+      .visit-grid { gap: 30px; }
+      .service-card { padding: 28px; }
+    }
+
+    @media (max-width: 680px) {
+      .wrap { width: calc(100% - 36px); }
+      .section { padding-block: 50px; }
+
+      .header-inner {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 4px 15px;
+        padding-block: 9px 5px;
+      }
+
+      .brand img { width: 45px; height: 45px; }
+      .brand span { display: inline; font-size: 1rem; }
+
+      .header-contact {
+        grid-column: 2;
+        grid-row: 1;
+        min-height: 39px;
+        padding: 8px 12px;
+        font-size: .78rem;
+      }
+
+      .main-nav {
+        grid-column: 1 / -1;
+        grid-row: 2;
+        gap: 26px;
+        width: 100%;
+      }
+
+      .main-nav a { padding-block: 10px; font-size: .86rem; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 33px;
+        padding-block: 40px;
+      }
+
+      .hero h1 { font-size: clamp(3.6rem, 14vw, 5.5rem); }
+      .hero-description { font-size: 1rem; }
+      .hero-logo { padding: 25px; max-width: 370px; margin: auto; }
+      .hero-logo img { max-width: 250px; margin: auto; }
+
+      .section-heading { display: block; }
+      .section-heading > p { margin-top: 18px; }
+
+      .brand-band {
+        gap: 12px 24px;
+        font-size: .65rem;
+        padding-inline: 15px;
+      }
+
+      .menu-book { grid-template-columns: 1fr; }
+
+      .book-cover {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        gap: 8px 22px;
+        padding: 20px;
+        text-align: left;
+        align-items: center;
+      }
+
+      .book-cover img {
+        width: 85px;
+        margin: 0;
+        grid-row: 1 / 3;
+      }
+
+      .book-cover h2 { font-size: 2.7rem; }
+      .book-cover p { margin: 0; font-size: .68rem; }
+      .book-cover small { display: none; }
+
+      .book-content { padding: 24px 20px 20px; }
+      .menu-item h4 { font-size: .91rem; }
+      .menu-item p { font-size: .82rem; }
+      .price { font-size: .96rem; }
+
+      .item-line, .size-header {
+        grid-template-columns: minmax(0, 1fr) 48px 48px;
+        gap: 8px;
+      }
+
+      .menu-page h3 { font-size: 1.05rem; }
+
+      .services-grid, .visit-grid { grid-template-columns: 1fr; }
+      .service-card h3 { font-size: 2.1rem; }
+
+      .photo-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .photo-grid figure,
+      .photo-grid figure:nth-child(-n+2) { grid-column: span 1; }
+      .photo-grid figure:first-child { grid-column: 1 / -1; }
+
+      .contact-inner { align-items: start; flex-direction: column; }
+      .contact-links { width: 100%; }
+
+      .footer { flex-wrap: wrap; padding-bottom: 100px; }
+
+      .floating-whatsapp {
+        bottom: 15px;
+        right: 15px;
+        padding: 12px 16px;
+        font-size: .88rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <a class="skip" href="#contenido">Saltar al contenido</a>
+
+  <!-- Iconos locales: no necesitan librerías externas. -->
+  <svg xmlns="http://www.w3.org/2000/svg"
+       style="position:absolute;width:0;height:0;overflow:hidden"
+       aria-hidden="true">
+    <symbol id="icon-instagram" viewBox="0 0 24 24">
+      <rect x="3" y="3" width="18" height="18" rx="5"
+            fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="12" cy="12" r="4"
+              fill="none" stroke="currentColor" stroke-width="1.8"/>
+      <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+    </symbol>
+
+    <symbol id="icon-whatsapp" viewBox="0 0 24 24">
+      <path fill="currentColor"
+        d="M20.52 3.48A11.9 11.9 0 0 0 12.05 0C5.47 0 .12 5.35.12 11.93c0 2.1.55 4.16 1.6 5.97L.02 24l6.25-1.64a11.9 11.9 0 0 0 5.77 1.47h.01c6.58 0 11.93-5.35 11.93-11.93a11.85 11.85 0 0 0-3.46-8.42ZM12.05 21.8h-.01a9.86 9.86 0 0 1-5.03-1.38l-.36-.22-3.71.97.99-3.62-.24-.37a9.87 9.87 0 0 1-1.51-5.25c0-5.46 4.44-9.9 9.91-9.9a9.83 9.83 0 0 1 7 2.9 9.83 9.83 0 0 1 2.9 7c0 5.45-4.44 9.87-9.94 9.87Zm5.44-7.4c-.3-.15-1.76-.87-2.03-.97-.28-.1-.48-.15-.68.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.9-.8-1.5-1.78-1.68-2.08-.17-.3-.02-.46.13-.61.13-.13.3-.35.45-.53.15-.17.2-.3.3-.49.1-.2.05-.38-.03-.53-.07-.15-.67-1.62-.92-2.22-.24-.58-.49-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.49s1.07 2.89 1.22 3.09c.15.2 2.1 3.21 5.09 4.5.71.3 1.27.48 1.7.61.71.23 1.35.2 1.86.12.56-.09 1.76-.72 2.01-1.42.25-.7.25-1.3.17-1.42-.07-.13-.27-.2-.57-.35Z"/>
+    </symbol>
+  </svg>
+
+  <header class="site-header">
+    <div class="header-inner wrap">
+      <a class="brand" href="#inicio" aria-label="Café Atma, inicio">
+        <img src="logo-atma.png" alt="Logo de Café Atma"
+             width="63" height="63">
+        <span>CAFÉ ATMA</span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navegación principal">
+        <a href="#catalogo">Menú</a>
+        <a href="#tostado">Tostado</a>
+        <a href="#eventos">Eventos</a>
+        <a href="#visitanos">Visítanos</a>
+        <a href="#contacto">Contacto</a>
+      </nav>
+
+      <a class="button header-contact"
+         data-wa="general"
+         href="https://wa.me/524424330804"
+         target="_blank" rel="noopener noreferrer">
+        <svg class="icon" aria-hidden="true">
+          <use href="#icon-whatsapp"></use>
+        </svg>
+        WhatsApp
+      </a>
+    </div>
+  </header>
+
+  <main id="contenido">
+    <section id="inicio" class="hero wrap" aria-labelledby="hero-title">
+      <div>
+        <p class="eyebrow">Café Atma · Cafetería, tostado y eventos</p>
+
+        <h1 id="hero-title">
+          Un sorbo<br>para el <em>alma.</em>
+        </h1>
+
+        <p class="hero-description">
+          Disfruta tu café en Atma, conoce nuestro café en grano
+          y molido, o llévanos a tu próximo evento.
+        </p>
+
+        <div class="hero-actions">
+          <a class="button dark" href="#catalogo">Explorar el menú ↗</a>
+
+          <a class="text-link"
+             data-wa="general"
+             href="https://wa.me/524424330804"
+             target="_blank" rel="noopener noreferrer">
+            <svg class="icon" aria-hidden="true">
+              <use href="#icon-whatsapp"></use>
+            </svg>
+            Escríbenos
+          </a>
+        </div>
+      </div>
+
+      <figure class="hero-logo">
+        <img src="logo-atma.png"
+             alt="Café Atma: logo amarillo con granos de café"
+             width="500" height="500"
+             fetchpriority="high">
+        <figcaption>UN SORBO PARA EL ALMA</figcaption>
+      </figure>
+    </section>
+
+    <div class="brand-band" aria-hidden="true">
+      <span>CAFETERÍA</span>
+      <span>✳</span>
+      <span>TOSTADO DE CAFÉ</span>
+      <span>✳</span>
+      <span>EVENTOS</span>
+    </div>
+
+    <section id="catalogo" class="section wrap" aria-labelledby="menu-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">El menú de Café Atma</p>
+          <h2 id="menu-title" class="section-title">
+            Encuentra tu<br>próximo favorito.
+          </h2>
+        </div>
+        <p>
+          Pasa las páginas de nuestra carta.
+          Precios en pesos mexicanos.
+        </p>
+      </div>
+
+      <!-- Se activan al cargar JavaScript. Sin JS se ve el menú completo. -->
+      <div id="book-tabs" class="book-tabs"
+           aria-label="Categorías del menú" hidden></div>
+
+      <div class="menu-book">
+        <div class="book-cover">
+          <img src="logo-atma.png"
+               alt="Café Atma" width="240" height="240"
+               loading="lazy">
+          <h2>Menú</h2>
+          <p>UN SORBO PARA EL ALMA</p>
+          <small>Cafetería · Tostado · Eventos</small>
+        </div>
+
+        <div class="book-content">
+          <div class="book-topline">
+            <span>CAFÉ ATMA</span>
+            <span>LA CARTA</span>
+          </div>
+
+          <div id="menu-pages">
+
+            <!-- PÁGINA 1 -->
+            <section class="menu-page"
+                     data-label="Los de siempre"
+                     tabindex="0"
+                     aria-labelledby="clasicos-title">
+              <h3 id="clasicos-title">Los de siempre</h3>
+
+              <div class="size-header" aria-label="Precios por tamaño M y G">
+                <span>Tamaño</span><span>M</span><span>G</span>
+              </div>
+
+              <article class="menu-item" data-m="40" data-g="45">
+                <div class="item-line">
+                  <h4>Espresso</h4>
+                  <span class="price">$40</span>
+                  <span class="price">$45</span>
+                </div>
+                <p>Shot corto y denso</p>
+              </article>
+
+              <article class="menu-item" data-m="45" data-g="50">
+                <div class="item-line">
+                  <h4>Americano*</h4>
+                  <span class="price">$45</span>
+                  <span class="price">$50</span>
+                </div>
+                <p>Base de agua caliente con shot de espresso</p>
+              </article>
+
+              <article class="menu-item" data-m="55">
+                <div class="item-line">
+                  <h4>Cortado</h4>
+                  <span class="price">$55</span>
+                  <span class="price" aria-label="Tamaño G no disponible">/</span>
+                </div>
+                <p>Shot de espresso con leche texturizada</p>
+              </article>
+
+              <article class="menu-item" data-m="60">
+                <div class="item-line">
+                  <h4>Flat White</h4>
+                  <span class="price">$60</span>
+                  <span class="price" aria-label="Tamaño G no disponible">/</span>
+                </div>
+                <p>Doble espresso con leche texturizada</p>
+              </article>
+
+              <article class="menu-item" data-m="55" data-g="60">
+                <div class="item-line">
+                  <h4>Capuchino</h4>
+                  <span class="price">$55</span>
+                  <span class="price">$60</span>
+                </div>
+                <p>Espresso con leche cremosa y espuma</p>
+              </article>
+
+              <article class="menu-item" data-m="60" data-g="65">
+                <div class="item-line">
+                  <h4>Latte*</h4>
+                  <span class="price">$60</span>
+                  <span class="price">$65</span>
+                </div>
+                <p>Espresso con abundante leche cremosa</p>
+              </article>
+
+              <article class="menu-item" data-m="60" data-g="65">
+                <div class="item-line">
+                  <h4>Cold Brew</h4>
+                  <span class="price">$60</span>
+                  <span class="price">$65</span>
+                </div>
+                <p>Café extraído en frío por horas</p>
+              </article>
+
+              <article class="menu-item" data-m="60" data-g="65">
+                <div class="item-line">
+                  <h4>Chocolate*</h4>
+                  <span class="price">$60</span>
+                  <span class="price">$65</span>
+                </div>
+                <p>Chocolate Chiapaneco</p>
+              </article>
+
+              <p class="menu-notes">* FRÍOS O CALIENTES</p>
+            </section>
+
+            <!-- PÁGINA 2 -->
+            <section class="menu-page"
+                     data-label="Escencias Atma"
+                     tabindex="0"
+                     aria-labelledby="escencias-title">
+              <h3 id="escencias-title">Escencias Atma</h3>
+
+              <div class="size-header" aria-label="Precios por tamaño M y G">
+                <span>Tamaño</span><span>M</span><span>G</span>
+              </div>
+
+              <article class="menu-item" data-m="65" data-g="70">
+                <div class="item-line">
+                  <h4>Flavored Latte*</h4>
+                  <span class="price">$65</span>
+                  <span class="price">$70</span>
+                </div>
+                <p>Caramel, Vainilla, Avellana, Chai, Lavanda, Coco</p>
+              </article>
+
+              <article class="menu-item" data-m="65" data-g="70">
+                <div class="item-line">
+                  <h4>Moka*</h4>
+                  <span class="price">$65</span>
+                  <span class="price">$70</span>
+                </div>
+                <p>Espresso con chocolate y leche</p>
+              </article>
+
+              <article class="menu-item" data-m="65" data-g="70">
+                <div class="item-line">
+                  <h4>Matcha*</h4>
+                  <span class="price">$65</span>
+                  <span class="price">$70</span>
+                </div>
+                <p>Matcha espumosa y leche</p>
+              </article>
+
+              <article class="menu-item" data-m="70" data-g="75">
+                <div class="item-line">
+                  <h4>Dirty Matcha*</h4>
+                  <span class="price">$70</span>
+                  <span class="price">$75</span>
+                </div>
+                <p>Espresso, matcha espumosa y leche</p>
+              </article>
+
+              <article class="menu-item" data-m="70">
+                <div class="item-line">
+                  <h4>Affogato</h4>
+                  <span class="price">$70</span>
+                  <span class="price" aria-label="Tamaño G no disponible">/</span>
+                </div>
+                <p>Helado de vainilla y espresso</p>
+              </article>
+
+              <article class="menu-item" data-m="99">
+                <div class="item-line">
+                  <h4>Carajillo</h4>
+                  <span class="price">$99</span>
+                  <span class="price" aria-label="Tamaño G no disponible">/</span>
+                </div>
+                <p>Espresso y Licor 43, servido con hielo</p>
+              </article>
+
+              <p class="menu-notes">* FRÍOS O CALIENTES</p>
+              <div class="menu-extra">
+                <span>LECHE VEGETAL</span><span>+$10</span>
+              </div>
+            </section>
+
+            <!-- PÁGINA 3 -->
+            <section class="menu-page"
+                     data-label="Para acompañar"
+                     tabindex="0"
+                     aria-labelledby="alimentos-title">
+              <h3 id="alimentos-title">Para acompañar</h3>
+
+              <article class="menu-item" data-price="25">
+                <div class="item-line single">
+                  <h4>Picte</h4><span class="price">$25</span>
+                </div>
+                <p>Tamal dulce de elote</p>
+              </article>
+
+              <article class="menu-item" data-price="75">
+                <div class="item-line single">
+                  <h4>Orden de empanadas</h4>
+                  <span class="price">$75</span>
+                </div>
+                <p>3 empanadas de quesillo Chiapaneco</p>
+              </article>
+
+              <article class="menu-item" data-price="35">
+                <div class="item-line single">
+                  <h4>Pan dulce</h4><span class="price">$35</span>
+                </div>
+                <p>Pan relleno de nutella</p>
+              </article>
+
+              <article class="menu-item" data-price="15">
+                <div class="item-line single">
+                  <h4>Galleta chocolate</h4>
+                  <span class="price">$15</span>
+                </div>
+                <p>Con chispas de chocolate</p>
+              </article>
+            </section>
+
+            <!-- PÁGINA 4 -->
+            <section class="menu-page"
+                     data-label="Grano y molido"
+                     tabindex="0"
+                     aria-labelledby="grano-title">
+              <h3 id="grano-title">Grano y molido</h3>
+
+              <article class="menu-item" data-price="210">
+                <div class="item-line single">
+                  <h4>Bolsa de 500 g</h4>
+                  <span class="price">$210</span>
+                </div>
+                <p>En grano y molido</p>
+              </article>
+
+              <article class="menu-item" data-price="420">
+                <div class="item-line single">
+                  <h4>Bolsa de 1 kg</h4>
+                  <span class="price">$420</span>
+                </div>
+                <p>En grano y molido</p>
+              </article>
+
+              <div style="margin-top:30px">
+                <a class="button"
+                   data-wa="grano"
+                   href="https://wa.me/524424330804"
+                   target="_blank" rel="noopener noreferrer">
+                  <svg class="icon" aria-hidden="true">
+                    <use href="#icon-whatsapp"></use>
+                  </svg>
+                  Consultar café
+                </a>
+              </div>
+            </section>
+          </div>
+
+          <div id="book-controls" class="book-controls" hidden>
+            <button id="prev-page" type="button"
+                    aria-label="Página anterior">←</button>
+            <span id="page-status" role="status"
+                  aria-live="polite" aria-atomic="true">01 / 04</span>
+            <button id="next-page" type="button"
+                    aria-label="Página siguiente">→</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="menu-bottom">
+        <p>M y G corresponden a los tamaños indicados en la carta.</p>
+        <a class="text-link"
+           data-wa="menu"
+           href="https://wa.me/524424330804"
+           target="_blank" rel="noopener noreferrer">
+          <svg class="icon" aria-hidden="true">
+            <use href="#icon-whatsapp"></use>
+          </svg>
+          Consultar por WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <section class="services section" aria-labelledby="services-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Más de Café Atma</p>
+            <h2 id="services-title" class="section-title">
+              De nuestro café<br>a tu próximo encuentro.
+            </h2>
+          </div>
+        </div>
+
+        <div class="services-grid">
+          <article id="tostado" class="service-card">
+            <p class="eyebrow">Tostado de café</p>
+            <h3>El café empieza<br>antes de la taza.</h3>
+            <p>
+              En Atma también tostamos café. Conoce nuestras opciones
+              y consulta el café disponible en grano o molido.
+            </p>
+            <a class="button"
+               data-wa="tostado"
+               href="https://wa.me/524424330804"
+               target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true">
+                <use href="#icon-whatsapp"></use>
+              </svg>
+              Consultar tostado
+            </a>
+          </article>
+
+          <article id="eventos" class="service-card">
+            <p class="eyebrow">Café para eventos</p>
+            <h3>Tu ocasión.<br>Nuestro café.</h3>
+            <p>
+              Llevamos Café Atma a tus eventos. Cuéntanos la fecha,
+              el lugar y el número aproximado de personas para
+              consultar disponibilidad y una propuesta.
+            </p>
+            <a class="button"
+               data-wa="eventos"
+               href="https://wa.me/524424330804"
+               target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true">
+                <use href="#icon-whatsapp"></use>
+              </svg>
+              Consultar mi evento
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Se muestra automáticamente al agregar fotos en CONFIG. -->
+    <section id="galeria" class="section wrap" hidden
+             aria-labelledby="gallery-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Personas, espacio y café</p>
+          <h2 id="gallery-title" class="section-title">Así es Atma.</h2>
+        </div>
+      </div>
+      <div id="photo-grid" class="photo-grid"></div>
+    </section>
+
+    <section id="visitanos" class="section wrap"
+             aria-labelledby="visit-title">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Visita Café Atma</p>
+          <h2 id="visit-title" class="section-title">Tu próxima parada.</h2>
+        </div>
+      </div>
+
+      <div class="visit-grid">
+        <div>
+          <div class="visit-detail">
+            <h3>Ubicación</h3>
+            <p id="address">Consulta nuestra ubicación en Google Maps.</p>
+            <a class="text-link maps-link"
+               href="https://www.google.com/maps?q=20.9125359,-100.7489935"
+               target="_blank" rel="noopener noreferrer">
+              Cómo llegar ↗
+            </a>
+          </div>
+
+          <div class="visit-detail">
+            <h3>Horarios</h3>
+            <div id="hours">
+              <p>Horario por confirmar. Consúltanos antes de tu visita.</p>
+            </div>
+            <a class="text-link"
+               data-wa="horario"
+               href="https://wa.me/524424330804"
+               target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true">
+                <use href="#icon-whatsapp"></use>
+              </svg>
+              Consultar horario
+            </a>
+          </div>
+
+          <div class="visit-detail">
+            <h3>Sigue nuestras novedades</h3>
+            <a class="text-link"
+               href="https://www.instagram.com/cafe_atma/"
+               target="_blank" rel="noopener noreferrer">
+              <svg class="icon" aria-hidden="true">
+                <use href="#icon-instagram"></use>
+              </svg>
+              @cafe_atma
+            </a>
+          </div>
+        </div>
+
+        <div class="map-box">
+          <iframe
+            title="Ubicación de Café Atma"
+            src="https://maps.google.com/maps?q=20.9125359,-100.7489935&z=16&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen>
+          </iframe>
+          <a class="maps-link"
+             href="https://www.google.com/maps?q=20.9125359,-100.7489935"
+             target="_blank" rel="noopener noreferrer">
+            Abrir ubicación en Google Maps ↗
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="contact" aria-labelledby="contact-title">
+      <div class="contact-inner wrap">
+        <div>
+          <p class="eyebrow">Conversemos</p>
+          <h2 id="contact-title" class="section-title">
+            ¿Nos tomamos un café?
+          </h2>
+        </div>
+
+        <div class="contact-links">
+          <a class="button dark"
+             data-wa="general"
+             href="https://wa.me/524424330804"
+             target="_blank" rel="noopener noreferrer">
+            <svg class="icon" aria-hidden="true">
+              <use href="#icon-whatsapp"></use>
+            </svg>
+            442 433 0804
+          </a>
+
+          <a class="button outline"
+             href="https://www.instagram.com/cafe_atma/"
+             target="_blank" rel="noopener noreferrer">
+            <svg class="icon" aria-hidden="true">
+              <use href="#icon-instagram"></use>
+            </svg>
+            Instagram
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer wrap">
+    <a class="brand" href="#inicio">
+      <img src="logo-atma.png" alt="Café Atma" width="63" height="63"
+           loading="lazy">
+      <span>CAFÉ ATMA</span>
+    </a>
+    <p>Un sorbo para el alma.</p>
+    <a href="#catalogo">Volver al menú ↑</a>
+  </footer>
+
+  <a class="floating-whatsapp"
+     data-wa="general"
+     href="https://wa.me/524424330804"
+     target="_blank" rel="noopener noreferrer"
+     aria-label="Contactar a Café Atma por WhatsApp">
+    <svg class="icon" aria-hidden="true">
+      <use href="#icon-whatsapp"></use>
+    </svg>
+    WhatsApp
+  </a>
+
+  <script>
+    "use strict";
+
+    /* DATOS EDITABLES.
+       Agregar únicamente información confirmada por el negocio. */
+    const CONFIG = {
+      whatsapp: "524424330804",
+      instagram: "https://www.instagram.com/cafe_atma/",
+
+      maps:
+        "https://www.google.com/maps/place/Caf%C3%A9+Atma/" +
+        "@20.9125359,-100.7515684,782m/" +
+        "data=!3m2!1e3!4b1!4m6!3m5!" +
+        "1s0x842b51d0daf9cfc7:0xd223074a9715c10f!" +
+        "8m2!3d20.9125359!4d-100.7489935!" +
+        "16s%2Fg%2F11yyhx403k",
+
+      direccion: "",
+
+      /* Ejemplo de estructura, SIN horas inventadas:
+         { dia: "Lunes", horario: "Horario confirmado" }
+      */
+      horarios: [],
+
+      /* Máximo 5 fotografías originales autorizadas.
+         Guardarlas en una carpeta fotos junto a index.html.
+
+         Ejemplo de estructura:
+         {
+           src: "fotos/local.jpg",
+           alt: "Descripción real de la fotografía",
+           texto: "Pie de foto"
+         }
+      */
+      fotos: []
+    };
+
+    const MENSAJES = {
+      general: "Hola, me gustaría conocer más sobre Café Atma.",
+      menu: "Hola, tengo una consulta sobre el menú de Café Atma.",
+      grano: "Hola, me interesa su café en grano o molido. ¿Me comparten las opciones disponibles?",
+      tostado: "Hola, me gustaría conocer sus opciones de tostado de café.",
+      horario: "Hola, ¿me confirman el horario de Café Atma?",
+      eventos: "Hola, me interesa Café Atma para un evento. Fecha: __. Lugar: __. Personas aproximadas: __. Horario: __."
+    };
+
+    document.querySelectorAll("[data-wa]").forEach(link => {
+      const mensaje = MENSAJES[link.dataset.wa] || MENSAJES.general;
+      link.href =
+        "https://wa.me/" + CONFIG.whatsapp +
+        "?text=" + encodeURIComponent(mensaje);
+    });
+
+    document.querySelectorAll(".maps-link").forEach(link => {
+      link.href = CONFIG.maps;
+    });
+
+    if (CONFIG.direccion) {
+      document.getElementById("address").textContent = CONFIG.direccion;
+    }
+
+    /* Horario visible: se activa solo con información confirmada. */
+    if (CONFIG.horarios.length) {
+      const table = document.createElement("table");
+      table.className = "hours";
+      table.setAttribute("aria-label", "Horario de Café Atma");
+
+      const tbody = document.createElement("tbody");
+
+      CONFIG.horarios.forEach(item => {
+        const tr = document.createElement("tr");
+        const th = document.createElement("th");
+        const td = document.createElement("td");
+
+        th.scope = "row";
+        th.textContent = item.dia;
+        td.textContent = item.horario;
+
+        tr.append(th, td);
+        tbody.append(tr);
+      });
+
+      table.append(tbody);
+      document.getElementById("hours").replaceChildren(table);
+    }
+
+    /* Libro: todo el menú existe en HTML desde el inicio. */
+    const paginas = [...document.querySelectorAll(".menu-page")];
+    const tabs = document.getElementById("book-tabs");
+    const anterior = document.getElementById("prev-page");
+    const siguiente = document.getElementById("next-page");
+    const estado = document.getElementById("page-status");
+    const botones = [];
+    let paginaActual = 0;
+
+    paginas.forEach((pagina, index) => {
+      const boton = document.createElement("button");
+      boton.type = "button";
+      boton.textContent = pagina.dataset.label;
+      boton.setAttribute("aria-pressed", "false");
+      boton.addEventListener("click", () => mostrarPagina(index));
+
+      tabs.append(boton);
+      botones.push(boton);
+    });
+
+    function mostrarPagina(index) {
+      paginaActual = Math.max(0, Math.min(index, paginas.length - 1));
+
+      paginas.forEach((pagina, i) => {
+        pagina.hidden = i !== paginaActual;
+        botones[i].setAttribute(
+          "aria-pressed",
+          String(i === paginaActual)
+        );
+      });
+
+      anterior.disabled = paginaActual === 0;
+      siguiente.disabled = paginaActual === paginas.length - 1;
+
+      estado.textContent =
+        String(paginaActual + 1).padStart(2, "0") +
+        " / " +
+        String(paginas.length).padStart(2, "0");
+
+      const pagina = paginas[paginaActual];
+
+      if (
+        pagina.animate &&
+        !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      ) {
+        pagina.animate(
+          [
+            { opacity: .25, transform: "translateX(10px)" },
+            { opacity: 1, transform: "translateX(0)" }
+          ],
+          { duration: 220, easing: "ease-out" }
+        );
+      }
+    }
+
+    anterior.addEventListener("click", () => {
+      mostrarPagina(paginaActual - 1);
+    });
+
+    siguiente.addEventListener("click", () => {
+      mostrarPagina(paginaActual + 1);
+    });
+
+    paginas.forEach(pagina => {
+      pagina.addEventListener("keydown", event => {
+        if (event.target !== pagina) return;
+
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          mostrarPagina(paginaActual + 1);
+          paginas[paginaActual].focus({ preventScroll: true });
+        }
+
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          mostrarPagina(paginaActual - 1);
+          paginas[paginaActual].focus({ preventScroll: true });
+        }
+      });
+
+      let inicio = null;
+
+      pagina.addEventListener("touchstart", event => {
+        if (event.touches.length !== 1) return;
+
+        inicio = {
+          x: event.touches[0].clientX,
+          y: event.touches[0].clientY
+        };
+      }, { passive: true });
+
+      pagina.addEventListener("touchend", event => {
+        if (!inicio) return;
+
+        const final = event.changedTouches[0];
+        const dx = final.clientX - inicio.x;
+        const dy = final.clientY - inicio.y;
+
+        if (Math.abs(dx) > 70 && Math.abs(dx) > Math.abs(dy) * 1.5) {
+          mostrarPagina(paginaActual + (dx < 0 ? 1 : -1));
+        }
+
+        inicio = null;
+      }, { passive: true });
+
+      pagina.addEventListener("touchcancel", () => {
+        inicio = null;
+      }, { passive: true });
+    });
+
+    tabs.hidden = false;
+    document.getElementById("book-controls").hidden = false;
+    mostrarPagina(0);
+
+    /* Navegación superior. */
+    document.querySelectorAll(".main-nav a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.querySelectorAll(".main-nav a").forEach(item => {
+          item.removeAttribute("aria-current");
+        });
+        link.setAttribute("aria-current", "location");
+      });
+    });
+
+    /* Galería: máximo cinco fotos, sin imágenes ficticias. */
+    const fotos = CONFIG.fotos
+      .filter(foto => foto.src && foto.alt)
+      .slice(0, 5);
+
+    if (fotos.length) {
+      const grid = document.getElementById("photo-grid");
+
+      fotos.forEach(foto => {
+        const figure = document.createElement("figure");
+        const img = document.createElement("img");
+
+        img.src = foto.src;
+        img.alt = foto.alt;
+        img.loading = "lazy";
+        img.width = 900;
+        img.height = 675;
+
+        figure.append(img);
+
+        if (foto.texto) {
+          const caption = document.createElement("figcaption");
+          caption.textContent = foto.texto;
+          figure.append(caption);
+        }
+
+        grid.append(figure);
+      });
+
+      document.getElementById("galeria").hidden = false;
+    }
+
+    /*
+      Datos estructurados construidos a partir del mismo menú visible.
+      No se añaden reseñas, dirección ni horarios no confirmados.
+    */
+    const seccionesMenu = paginas.map(pagina => ({
+      "@type": "MenuSection",
+      "name": pagina.dataset.label,
+      "hasMenuItem": [...pagina.querySelectorAll(".menu-item")].map(item => {
+        const nombre = item.querySelector("h4")
+          .textContent.replace(/\*/g, "").trim();
+
+        const descripcion = item.querySelector("p").textContent.trim();
+        const ofertas = [];
+
+        if (item.dataset.m) {
+          ofertas.push({
+            "@type": "Offer",
+            "name": "Tamaño M",
+            "price": item.dataset.m,
+            "priceCurrency": "MXN"
+          });
+        }
+
+        if (item.dataset.g) {
+          ofertas.push({
+            "@type": "Offer",
+            "name": "Tamaño G",
+            "price": item.dataset.g,
+            "priceCurrency": "MXN"
+          });
+        }
+
+        if (item.dataset.price) {
+          ofertas.push({
+            "@type": "Offer",
+            "price": item.dataset.price,
+            "priceCurrency": "MXN"
+          });
+        }
+
+        return {
+          "@type": "MenuItem",
+          "name": nombre,
+          "description": descripcion,
+          "offers": ofertas
+        };
+      })
+    }));
+
+    const negocio = {
+      "@context": "https://schema.org",
+      "@type": "CafeOrCoffeeShop",
+      "name": "Café Atma",
+      "description":
+        "Café Atma ofrece cafetería, café en grano y molido, " +
+        "tostado de café y servicio de café para eventos.",
+      "telephone": "+" + CONFIG.whatsapp,
+      "sameAs": [CONFIG.instagram],
+      "hasMap": CONFIG.maps,
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 20.9125359,
+        "longitude": -100.7489935
+      },
+      "hasMenu": {
+        "@type": "Menu",
+        "name": "Menú de Café Atma",
+        "hasMenuSection": seccionesMenu
+      }
+    };
+
+    if (CONFIG.direccion) {
+      negocio.address = CONFIG.direccion;
+    }
+
+    const schema = document.createElement("script");
+    schema.type = "application/ld+json";
+    schema.textContent = JSON.stringify(negocio);
+    document.head.append(schema);
+  </script>
+</body>
+</html>
